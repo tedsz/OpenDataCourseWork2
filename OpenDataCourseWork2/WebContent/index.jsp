@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-hello world
+<a href="HistoryResultServlet?clubName=Southampton">Southampton</a>
 </body>
 </html>
