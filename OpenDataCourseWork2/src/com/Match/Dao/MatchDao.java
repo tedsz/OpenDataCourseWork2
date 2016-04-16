@@ -20,8 +20,9 @@ public class MatchDao extends BaseDao {
 		ResultSet rs = null;
 		Match match = new Match();
 		try {
-			ps = con.prepareStatement("select * from footballdata where HomeTeam = ?");
+			ps = con.prepareStatement("select * from footballdata where HomeTeam = ? or AwayTeam=? ");
 			ps.setString(1, clubName);
+			ps.setString(2, clubName);
 			rs=ps.executeQuery();
 			while(rs.next()){
 				match.setSeason(rs.getString("Div"));
