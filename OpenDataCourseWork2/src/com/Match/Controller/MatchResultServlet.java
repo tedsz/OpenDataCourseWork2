@@ -1,6 +1,7 @@
 package com.Match.Controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -35,23 +36,54 @@ public class MatchResultServlet extends HttpServlet {
 		//Query the records with limitation number per page
 		int page = 1;
 		int recordsPerPage = 10;
-		if(request.getParameter("page") != null)
+		if(request.getParameter("page") != null){
             page = Integer.parseInt(request.getParameter("page"));
 		
 		String clubName = request.getParameter("clubName").toString();
 		//Save the clubName to session
-		request.setAttribute("currentTeam", clubName);
-		System.out.println(clubName);
+		request.getSession().setAttribute("currentTeam", clubName);
+		
 		MatchDao mDao = new MatchDao();
 		List<Match> matchList=mDao.queryHistoryMatch(clubName,(page-1)*recordsPerPage,recordsPerPage);
+		
 		int noOfRecords = mDao.getNoOfRecords();
         int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+        request.getSession().setAttribute("matchList", matchList);
+        request.getSession().setAttribute("noOfPages", noOfPages);
+        request.getSession().setAttribute("currentPage",page);
         
-        request.setAttribute("matchList", matchList);
-        request.setAttribute("noOfPages", noOfPages);
-        request.setAttribute("currentPage",page);
-        RequestDispatcher view = request.getRequestDispatcher("pageTest.jsp");
-        view.forward(request, response);
+        //Get the percent result from MatchDao
+        HashMap<String, String> percentMap = new HashMap<>();
+        percentMap = mDao.calPercent(clubName);
+        
+		//Save the percentMap into Session
+        request.getSession().setAttribute("percentMap", percentMap);
+        response.sendRedirect("single.jsp?#msg-box1-29");
+        }
+		else{
+        	
+    		
+    		String clubName = request.getParameter("clubName").toString();
+    		//Save the clubName to session
+    		request.getSession().setAttribute("currentTeam", clubName);
+    		
+    		MatchDao mDao = new MatchDao();
+    		List<Match> matchList=mDao.queryHistoryMatch(clubName,(page-1)*recordsPerPage,recordsPerPage);
+    		
+    		int noOfRecords = mDao.getNoOfRecords();
+            int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+            request.getSession().setAttribute("matchList", matchList);
+            request.getSession().setAttribute("noOfPages", noOfPages);
+            request.getSession().setAttribute("currentPage",page);
+            
+            //Get the percent result from MatchDao
+            HashMap<String, String> percentMap = new HashMap<>();
+            percentMap = mDao.calPercent(clubName);
+            
+    		//Save the percentMap into Session
+            request.getSession().setAttribute("percentMap", percentMap);
+            response.sendRedirect("single.jsp");
+        }
 	}
 
 	/**

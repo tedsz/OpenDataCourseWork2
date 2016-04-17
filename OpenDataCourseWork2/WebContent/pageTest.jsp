@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
  <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
@@ -8,7 +9,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%String currentTeam = (String)request.getSession().getAttribute("currentTeam"); %>
+	<%String currentTeam = (String)request.getSession().getAttribute("currentTeam"); 
+		System.out.print("TEST"+currentTeam);
+	  HashMap percentMap = new HashMap();
+	  percentMap = (HashMap)request.getSession().getAttribute("percentMap");
+	%>
 	<table border = "1" cellpadding = "5" cellspacing = "5"> 
 		<tr>
 			<th>Date</th>
@@ -46,8 +51,13 @@
         <td><a href="MatchResultServlet?page=${currentPage - 1}&clubName=${currentTeam}">Previous</a></td>
     </c:if>
     <%--For displaying Next link --%>
-    <c:if test="${currentPage lt noOfPages}">
+    <c:if test="true">
         <td><a href="MatchResultServlet?page=${currentPage + 1}&clubName=${currentTeam}">Next</a></td>
     </c:if>
+    <table>
+    	<tr>
+    		<td>${percentMap.get("wonAsAwayPercent") }</td>
+    	</tr>
+    </table>
 </body>
 </html>
