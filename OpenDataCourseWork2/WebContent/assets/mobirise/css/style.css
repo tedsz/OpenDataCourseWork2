@@ -1,4 +1,38 @@
-.is-builder .animated {
+.ratecontent{
+    font-size: 1.5em;
+    clear:both;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.ratedata{
+    font-size: 3em;
+}
+
+#chooseteam ul{
+    max-height: 280px;
+    overflow: scroll;
+}
+
+#chooseteam li a{
+    text-decoration: none;
+}
+
+@media (min-width: 991px){
+  #home{
+      border-right: solid 1px white;
+      padding-top: 20px;
+  }
+    #away{
+        border-left: solid 1px white;
+        padding-top: 20px;
+    }
+    #homewin,#draw{
+        border-right: 1px black solid;
+    }
+}
+
+  .is-builder .animated {
   -webkit-animation-name: none !important;
   animation-name: none !important;
 }

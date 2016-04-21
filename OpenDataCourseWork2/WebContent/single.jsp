@@ -45,7 +45,7 @@
                 <div class="mbr-navbar__column mbr-navbar__menu">
                     <nav class="mbr-navbar__menu-box mbr-navbar__menu-box--inline-right">
                         <div class="mbr-navbar__column"><ul class="mbr-navbar__items mbr-navbar__items--right mbr-buttons mbr-buttons--freeze mbr-buttons--right btn-decorator mbr-buttons--active"><li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="index.jsp#form1-10">OVERVIEW</a></li><li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="index.jsp#features1-11">SINGLE CLUB</a></li></ul></div>
-                        <div class="mbr-navbar__column"><ul class="mbr-navbar__items mbr-navbar__items--right mbr-buttons mbr-buttons--freeze mbr-buttons--right btn-inverse mbr-buttons--active"><li class="mbr-navbar__item"><a class="mbr-buttons__btn btn btn-default" href="forecast.html">PREDICTION</a></li></ul></div>
+                        <div class="mbr-navbar__column"><ul class="mbr-navbar__items mbr-navbar__items--right mbr-buttons mbr-buttons--freeze mbr-buttons--right btn-inverse mbr-buttons--active"><li class="mbr-navbar__item"><a class="mbr-buttons__btn btn btn-default" href="forecast.jsp">PREDICTION</a></li></ul></div>
                     </nav>
                 </div>
             </div>
@@ -92,6 +92,7 @@
                                 </table>
                             </div>
                         </div>
+                         <div class="mbr-buttons btn-inverse mbr-buttons--center"> <a class="mbr-buttons__btn btn btn-lg btn-danger animated fadeInUp delay" href="#msg-box1-29">SHOW DETAILS <span class="glyphicon glyphicon-chevron-down"></span></a></div>
                     </div>
                 </div>
             </div>
@@ -114,12 +115,12 @@
                                 SEASON <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li id="2010/2011"><a href="#">2010/2011</a></li>
-                                <li id="2011/2012"><a href="#">2011/2012</a></li>
-                                <li id="2012/2013"><a href="#">2012/2013</a></li>
-                                <li id="2013/2014"><a href="#">2013/2014</a></li>
-                                <li id="2014/2015"><a href="#">2014/2015</a></li>
-                                <li id="2015/2016"><a href="#">2015/2016</a></li>
+                                <li id="2010/2011"><a href="MatchResultServlet?season=2010/2011&clubName=${currentTeam}">2010/2011</a></li>
+                                <li id="2011/2012"><a href="MatchResultServlet?season=2011/2012&clubName=${currentTeam}">2011/2012</a></li>
+                                <li id="2012/2013"><a href="MatchResultServlet?season=2012/2013&clubName=${currentTeam}">2012/2013</a></li>
+                                <li id="2013/2014"><a href="MatchResultServlet?season=2013/2014&clubName=${currentTeam}">2013/2014</a></li>
+                                <li id="2014/2015"><a href="MatchResultServlet?season=2014/2015&clubName=${currentTeam}">2014/2015</a></li>
+                                <li id="2015/2016"><a href="MatchResultServlet?season=2015/2016&clubName=${currentTeam}">2015/2016</a></li>
                             </ul>
                         </div>
                     </div>
@@ -169,7 +170,7 @@
 						    </c:if>
 						    <%--For displaying Next link --%>
 						    <c:if test="true">
-						        <td><a href="MatchResultServlet?page=${currentPage + 1}&clubName=${currentTeam}#detail">Next</a></td>
+						        <td><a href="MatchResultServlet?page=${currentPage + 1}&clubName=${currentTeam}">Next</a></td>
 						    </c:if>
 						    
                     </div>

@@ -36,7 +36,7 @@ public class MatchDao extends BaseDao {
 			rs=ps.executeQuery();
 			while(rs.next()){
 				Match match = new Match();
-				match.setSeason(rs.getString("Div"));
+				match.setSeason(rs.getString("Season"));
 				match.setDate(rs.getDate("Date"));
 				match.setHomeTeam(rs.getString("HomeTeam"));
 				match.setAwayTeam(rs.getString("AwayTeam"));
@@ -57,7 +57,7 @@ public class MatchDao extends BaseDao {
 				 number = count.getInt("Count(*)");
 			}
 			
-			System.out.println("Count="+number);
+			
 			rs.close();
 			rs = ps.executeQuery("SELECT FOUND_ROWS()");
             if(rs.next())
@@ -113,7 +113,7 @@ public class MatchDao extends BaseDao {
 			}
 			//Calculate the percent won as home team
 			wonAsHomePercent = numberFormat.format((float)wonAsHomeCount/(float)wholeMatchCount*100)+"%";
-			System.out.println("The Won percent is:"+ wonAsHomePercent);
+			
 			//Add this percent to hashmap
 			percentMap.put("wonAsHomePercent", wonAsHomePercent);
 			rs.close();
@@ -132,7 +132,7 @@ public class MatchDao extends BaseDao {
 			}
 			//Calculate the percent draw as home team
 			drawAsHomePercent = numberFormat.format((float)drawAsHomeTeam/(float)wholeMatchCount*100)+"%";
-			System.out.println("The draw percent is:"+ drawAsHomePercent);
+			
 			//Add to hashmap
 			percentMap.put("drawAsHomePercent", drawAsHomePercent);
 			rs.close();
@@ -153,7 +153,7 @@ public class MatchDao extends BaseDao {
 			loseAsHomePercent = numberFormat.format((float)loseAsHomeTeam/(float)wholeMatchCount*100)+"%";
 			//Add to hashmap
 			percentMap.put("loseAsHomePercent", loseAsHomePercent);
-			System.out.println("The lsoe percent is:" + loseAsHomePercent);
+			
 		/*
 		 * Calculate the match and percent as Away team
 		  */
@@ -182,7 +182,7 @@ public class MatchDao extends BaseDao {
 				}
 				//Calculate the percent won as away team
 				wonAsAwayPercent = numberFormat.format((float)wonAsAwayCount/(float)wholeAwayMatchCount*100)+"%";
-				System.out.println("The Won percent is:"+ wonAsAwayPercent);
+				
 				//Add this percent to hashmap
 				percentMap.put("wonAsAwayPercent", wonAsAwayPercent);
 				rs.close();
@@ -201,7 +201,7 @@ public class MatchDao extends BaseDao {
 					}
 					//Calculate the percent draw as home team
 					drawAsAwayPercent = numberFormat.format((float)drawAsAwayTeam/(float)wholeAwayMatchCount*100)+"%";
-					System.out.println("The draw percent is:"+ drawAsAwayPercent);
+					
 					//Add to hashmap
 					percentMap.put("drawAsAwayPercent", drawAsAwayPercent);
 					rs.close();
@@ -222,12 +222,58 @@ public class MatchDao extends BaseDao {
 						loseAsAwayPercent = numberFormat.format((float)loseAsAwayTeam/(float)wholeAwayMatchCount*100)+"%";
 						//Add to hashmap
 						percentMap.put("loseAsAwayPercent", loseAsAwayPercent);
-						System.out.println("The lsoe percent is:" + loseAsAwayPercent);
+						
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		return percentMap;
 	}
+	//Define the method to select the history result based on certain season
+	public List<Match> queryHistoryMatchBasedOnSeason(String clubName,String season,int offset,int noOfRecords){
+		List<Match> matchList = new ArrayList<>();
+		Connection con = this.getConnection();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		
+		try {
+			ps = con.prepareStatement("select  SQL_CALC_FOUND_ROWS * from footballdata where  Season = ? and (HomeTeam = ? or AwayTeam = ?)   LIMIT ?,?" );
+			ps.setString(1, season);
+			ps.setString(2, clubName);
+			ps.setString(3, clubName);
+			ps.setInt(4, offset);
+			ps.setInt(5, noOfRecords);
+			rs=ps.executeQuery();
+			while(rs.next()){
+				Match match = new Match();
+				match.setSeason(rs.getString("Season"));
+				match.setDate(rs.getDate("Date"));
+				match.setHomeTeam(rs.getString("HomeTeam"));
+				match.setAwayTeam(rs.getString("AwayTeam"));
+				match.setFTHG(rs.getInt("FTHG"));
+				match.setFTAG(rs.getInt("FTAG"));
+				match.setFullTimeResult(rs.getString("FTR"));
+				matchList.add(match);
+				
+			}
+			PreparedStatement resultCount = con.prepareStatement("select Count(*) from footballdata where HomeTeam =? and FTR=?");
+			resultCount.setString(1, clubName);
+			resultCount.setString(2, "H");
+			ResultSet count = null;
+			count = resultCount.executeQuery();
+			int number = 0;
+			while(count.next()){
+				 number = count.getInt("Count(*)");
+			}
+			rs.close();
+			rs = ps.executeQuery("SELECT FOUND_ROWS()");
+            if(rs.next())
+               this.noOfRecords = rs.getInt(1);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return matchList;
+		}
+
 }

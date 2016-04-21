@@ -17,7 +17,9 @@
   <link rel="stylesheet" href="assets/animate.css/animate.min.css">
   <link rel="stylesheet" href="assets/mobirise/css/style.css">
   <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
-  
+   <!--vs total--> 
+   <link rel='stylesheet prefetch' href='https://dc-js.github.io/dc.js/css/dc.css'>
+   <link rel="stylesheet" href="assets/VS/css/VStotal.css">
   
   
 </head>
@@ -35,8 +37,8 @@
                 <div class="mbr-navbar__hamburger mbr-hamburger"><span class="mbr-hamburger__line"></span></div>
                 <div class="mbr-navbar__column mbr-navbar__menu">
                     <nav class="mbr-navbar__menu-box mbr-navbar__menu-box--inline-right">
-                        <div class="mbr-navbar__column"><ul class="mbr-navbar__items mbr-navbar__items--right mbr-buttons mbr-buttons--freeze mbr-buttons--right btn-decorator mbr-buttons--active"><li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="index.html#form1-10">OVERVIEW</a></li><li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="index.html#features1-11">SINGLE CLUB</a></li></ul></div>
-                        <div class="mbr-navbar__column"><ul class="mbr-navbar__items mbr-navbar__items--right mbr-buttons mbr-buttons--freeze mbr-buttons--right btn-inverse mbr-buttons--active"><li class="mbr-navbar__item"><a class="mbr-buttons__btn btn btn-default" href="forecast.html">PREDICTION</a></li></ul></div>
+                        <div class="mbr-navbar__column"><ul class="mbr-navbar__items mbr-navbar__items--right mbr-buttons mbr-buttons--freeze mbr-buttons--right btn-decorator mbr-buttons--active"><li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="index.jsp#form1-10">OVERVIEW</a></li><li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-white" href="index.jsp#features1-11">SINGLE CLUB</a></li></ul></div>
+                        <div class="mbr-navbar__column"><ul class="mbr-navbar__items mbr-navbar__items--right mbr-buttons mbr-buttons--freeze mbr-buttons--right btn-inverse mbr-buttons--active"><li class="mbr-navbar__item"><a class="mbr-buttons__btn btn btn-default" href="forecast.jsp">PREDICTION</a></li></ul></div>
                     </nav>
                 </div>
             </div>
@@ -76,11 +78,11 @@
                 <div class="mbr-box__magnet mbr-box__magnet--top-left mbr-section__left col-sm-8">
                     <div class="mbr-section__container mbr-section__container--middle">
                         <div class="mbr-header mbr-header--auto-align mbr-header--wysiwyg">
-                            <h3 class="mbr-header__text">PRE MADE BLOCKS</h3>
+                            <h3 class="mbr-header__text">DATA VISUALISATION</h3>
                         </div>
                     </div>
                     <div class="mbr-section__container">
-                        <div class="mbr-article mbr-article--auto-align mbr-article--wysiwyg"><p>Mobirise comes with huge collection of pre made layouts to help make your development faster.</p></div>
+                        <div class="mbr-article mbr-article--auto-align mbr-article--wysiwyg"><p>Get the history match result and show those data in visualisation.</p></div>
                     </div>
                 </div>
                 <div class="mbr-box__magnet mbr-box__magnet--top-left mbr-section__right col-sm-4">
@@ -99,12 +101,44 @@
             <div class="col-sm-12">
                 <div class="row">
                     <div class="col-sm-8 col-sm-offset-2">
-                        <div class="mbr-header mbr-header--center mbr-header--std-padding">
-                            <h2 class="mbr-header__text">OVERVIEW BY VISUALIZATION</h2>
-                        </div>
-                        
-                        <div name="visualization"></div>
+                       <div name ="visualization">
+                            <h2>HOME TEAM</h2>
+                         <div id="allteams"></div>
+                        <br/>
 
+                        <h2 id="pie_totalFtitle">FULL TIME ODDS</h2>
+                        <div id="pie_totalF"></div>
+                        <br/>
+
+                        <h2 id="pie_totalHtitle">HALF TIME ODDS</h2>
+                        <div id="pie_totalH"></div>
+                         <br/>
+
+                         <div>
+                    <div>
+                <div class= "HDA">
+                    <p>H:HomeWin</p>    
+                    <p>D:Draw</p>
+                    <p>A:AwayWin</p>
+
+                </div>                       
+            <div id="vsreset">
+                <a class="mbr-buttons__btn btn btn-lg btn-default animated fadeInUp delay"  onclick="Reset() ">RESET</a>
+            </div>
+
+                </div>
+
+
+                </div>
+
+
+<script src='http://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js'></script>
+<script src='https://dc-js.github.io/dc.js/js/crossfilter.js'></script>
+<script src='https://dc-js.github.io/dc.js/js/dc.js'></script>
+
+<script src="assets/VS/js/VStotal.js"></script>
+
+                        </div>
 
 
 
@@ -125,11 +159,12 @@
                 <div class="mbr-box__magnet mbr-box__magnet--top-left mbr-section__left col-sm-8">
                     <div class="mbr-section__container mbr-section__container--middle">
                         <div class="mbr-header mbr-header--auto-align mbr-header--wysiwyg">
-                            <h3 class="mbr-header__text">PRE MADE BLOCKS</h3>
+                            <h3 class="mbr-header__text">SINGLE CLUB INFO.</h3>
+                            <p class="mbr-header__subtext">Last 6 years (2010-2016) promotion team.</p>
                         </div>
                     </div>
                     <div class="mbr-section__container">
-                        <div class="mbr-article mbr-article--auto-align mbr-article--wysiwyg"><p>Mobirise comes with huge collection of pre made layouts to help make your development faster.</p></div>
+                        <div class="mbr-article mbr-article--auto-align mbr-article--wysiwyg"><p></p></div>
                     </div>
                 </div>
                 <div class="mbr-box__magnet mbr-box__magnet--top-left mbr-section__right col-sm-4">
@@ -146,8 +181,8 @@
     <div class="mbr-section__container mbr-section__container--std-top-padding mbr-section__container--sm-bot-padding mbr-section-title container" style="padding-top: 62px;">
         <div class="mbr-header mbr-header--center mbr-header--wysiwyg row">
             <div class="col-sm-8 col-sm-offset-2">
-                <h3 class="mbr-header__text">SINGLE CLUB INFO.</h3>
-                <p class="mbr-header__subtext">Last 6 years (2010-2016) promotion team.</p>
+                <h3 class="mbr-header__text"></h3>
+                
             </div>
         </div>
     </div>

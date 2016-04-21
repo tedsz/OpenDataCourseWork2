@@ -1,0 +1,53 @@
+.dc-chart g.row text {
+  fill: black;
+}
+#hometeam{
+left: 10px;
+}
+#allteams{
+	left: 0px;
+}
+
+ #pie_totalFtitle {
+ 	position:absolute;
+ 	float:right;
+ 	top:0px;
+ 	left:350px;
+ }
+ #pie_totalF{
+ 	position: absolute;
+ 	float: right;
+ 	top:40px;
+ 	left: 290px;
+ }
+
+ #pie_totalHtitle{
+ 	position: absolute;
+ 	float: right;
+ 	top:400px;
+ 	left: 350px;
+
+ }
+ #pie_totalH{
+ 	position: absolute;
+ 	float: right;
+ 	top:400px;
+ 	left: 290px
+ }
+
+ #vsreset{
+ 	position: absolute;
+ 	float: right;
+ 	top:40px;
+ 	left:700px;
+ }
+
+
+.HDA{
+	position: absolute;
+	float: right;
+	top:120px;
+	left:700px;
+	color: Cornsilk;
+	font-size: 20px;
+}

@@ -61,8 +61,8 @@ public class MatchResultServlet extends HttpServlet {
         response.sendRedirect("single.jsp?#msg-box1-29");
         }
 		else{
-        	
-    		
+        	//The history matches result of the last 6 seasons.
+    		if(request.getParameter("season")==null){
     		String clubName = request.getParameter("clubName").toString();
     		//Save the clubName to session
     		request.getSession().setAttribute("currentTeam", clubName);
@@ -83,6 +83,32 @@ public class MatchResultServlet extends HttpServlet {
     		//Save the percentMap into Session
             request.getSession().setAttribute("percentMap", percentMap);
             response.sendRedirect("single.jsp");
+        }else{
+        	
+        	//The matches result based on certain season
+        	String season =request.getParameter("season").toString();
+        	System.out.println("The season is servlet:" + season);
+        	String clubName = request.getParameter("clubName").toString();
+    		//Save the clubName to session
+    		request.getSession().setAttribute("currentTeam", clubName);
+    		
+    		MatchDao mDao = new MatchDao();
+    		List<Match> matchList=mDao.queryHistoryMatchBasedOnSeason(clubName,season,(page-1)*recordsPerPage,recordsPerPage);
+    		
+    		int noOfRecords = mDao.getNoOfRecords();
+            int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+            request.getSession().setAttribute("matchList", matchList);
+            request.getSession().setAttribute("noOfPages", noOfPages);
+            request.getSession().setAttribute("currentPage",page);
+            
+            //Get the percent result from MatchDao
+            HashMap<String, String> percentMap = new HashMap<>();
+            percentMap = mDao.calPercent(clubName);
+            
+    		//Save the percentMap into Session
+            request.getSession().setAttribute("percentMap", percentMap);
+            response.sendRedirect("single.jsp#msg-box1-29");
+        	}
         }
 	}
 
