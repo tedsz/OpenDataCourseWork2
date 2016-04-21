@@ -238,8 +238,30 @@
 	//Check whether jump to serlet
 	var jump = '<%=request.getParameter("jump")%>';
 	var color='<%=request.getParameter("color")%>';
+	var homevalue;
+    var awayvalue;
+    var homewin;
+    var awaywin;
+     homevalue = $("#hs option:selected").text();
+     awayvalue = $("#as option:selected").text();
+     homewin = document.getElementById("homewinrate").innerText;
+     awaywin = document.getElementById("awaywinrate").innerText;
 	if(jump =='yes'){
 		  $("#pk").fadeIn("slow");
+	}
+	if(color=='yes'){
+		if (homewin>awaywin){
+            document.getElementById("homewinrate").style="color: #009513;";
+            document.getElementById("awaywinrate").style="color: #950500";
+        }
+        else if(homewin == awaywin){
+            document.getElementById("homewinrate").style="color: #252525;";
+            document.getElementById("awaywinrate").style="color: #252525;";
+        }
+        else{
+            document.getElementById("homewinrate").style="color: #950500;";
+            document.getElementById("awaywinrate").style="color: #009513";
+        }
 	}
     //action of away button
     $(document) .ready(function(){
@@ -299,20 +321,7 @@
                 document.getElementById("btlink").href = "#menu-0";
             }
 
-			if(color=='yes'){
-            if (homewin>awaywin){
-                document.getElementById("homewinrate").style="color: #009513;";
-                document.getElementById("awaywinrate").style="color: #950500";
-            }
-            else if(homewin == awaywin){
-                document.getElementById("homewinrate").style="color: #252525;";
-                document.getElementById("awaywinrate").style="color: #252525;";
-            }
-            else{
-                document.getElementById("homewinrate").style="color: #950500;";
-                document.getElementById("awaywinrate").style="color: #009513";
-            }
-			}
+						
         });
 
 
