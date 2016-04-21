@@ -309,7 +309,7 @@
             if (homevalue != "--" && awayvalue != "--" && homevalue != awayvalue) {
             	 teamPKForm.action="ForecastServlet";
            	  	 teamPKForm.submit();
-                $("#pk").fadeIn("fast");
+                $("#pk").Slidedown("fast");
                 document.getElementById("btlink").href = "#pk";
             }
             if (homevalue == awayvalue && (homevalue != "--" || awayvalue != "--")) {

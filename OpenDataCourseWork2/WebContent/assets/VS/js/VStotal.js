@@ -21,7 +21,7 @@ d3.csv("DATA/footballdata.csv", function(data) {
     .radius(120)
     .dimension(odds)
     .group(oddsGroup)
-    .ordinalColors(['#980000  ', '#ffd11a ', '#006600'])
+    .ordinalColors(['#980000  ', '#E0C700 ', '#006600'])
     //.legend(dc.legend())
 
     .label(function(d) {
@@ -39,7 +39,7 @@ d3.csv("DATA/footballdata.csv", function(data) {
     .radius(120)
     .dimension(oddsh)
     .group(oddshGroup)
-    .ordinalColors(['#00a3cc', '#00b36b ', 'RebeccaPurple '])
+    .ordinalColors(['#6baed6', '#31a354 ', '#756bb1 '])
     //.legend(dc.legend())
 
 
