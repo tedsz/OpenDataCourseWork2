@@ -60,39 +60,39 @@
         <div class="mbr-box__container mbr-section__container container">
             <div class="mbr-box mbr-box--stretched">
                 <div class="mbr-box__magnet mbr-box__magnet--center-left">
-                    <div class="row">
+                    <div class="row" style="margin-top:30px;">
                         <div class="animated fadeInUp col-md-offset-1 col-md-4 delay">
-                            <img style="max-width: 300px;" src="assets/images/club%20Images/<%=clubName%>.png">
+                            <img style="max-width: 300px;margin-bottom:30px;" src="assets/images/club%20Images/<%=clubName%>.png">
                         </div>
-                        <div class=" col-md-6">
-                            <div class="mbr-hero animated fadeInUp">
-                                <h1 class="mbr-hero__text" id="clubname"><%=clubName%></h1>
-                                <!-- table of club overview-->
-                                <table class="table" style="font-weight: bold; font-size:1.5em;">
-                                    <tr>
-                                        <th></th>
-                                        <th>HOME</th>
-                                        <th>AWAY</th>
-                                    </tr>
-                                    <tr>
-                                        <td>WIN</td>
-                                        <td>${percentMap.get("wonAsHomePercent")}</td>
-                                        <td>${percentMap.get("wonAsAwayPercent")}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>DRAW</td>
-                                        <td>${percentMap.get("drawAsHomePercent")} </td>
-                                        <td>${percentMap.get("drawAsAwayPercent")}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>LOSE</td>
-                                        <td>${percentMap.get("loseAsHomePercent")}</td>
-                                        <td>${percentMap.get("loseAsAwayPercent")}</td>
-                                    </tr>
-                                </table>
-                            </div>
+                        
+                        <div class="col-md-6 mbr-hero animated fadeInUp">
+                            <h1 class="mbr-hero__text" id="clubname"><%=clubName%></h1>
+                            <!-- table of club overview-->
+                            <table class="table" style="font-weight: bold; font-size:1.5em;">
+                                <tr>
+                                    <th></th>
+                                    <th>HOME</th>
+                                    <th>AWAY</th>
+                                </tr>
+                                <tr>
+                                    <td>WIN</td>
+                                    <td>${percentMap.get("wonAsHomePercent")}</td>
+                                    <td>${percentMap.get("wonAsAwayPercent")}</td>
+                                </tr>
+                                <tr>
+                                    <td>DRAW</td>
+                                    <td>${percentMap.get("drawAsHomePercent")} </td>
+                                    <td>${percentMap.get("drawAsAwayPercent")}</td>
+                                </tr>
+                                <tr>
+                                    <td>LOSE</td>
+                                    <td>${percentMap.get("loseAsHomePercent")}</td>
+                                    <td>${percentMap.get("loseAsAwayPercent")}</td>
+                                </tr>
+                            </table>
                         </div>
-                         <div class="mbr-buttons btn-inverse mbr-buttons--center"> <a class="mbr-buttons__btn btn btn-lg btn-danger animated fadeInUp delay" href="#msg-box1-29">SHOW DETAILS <span class="glyphicon glyphicon-chevron-down"></span></a></div>
+                      
+                         <div class="mbr-buttons btn-inverse mbr-buttons--center" style="clear:both;"> <a class="mbr-buttons__btn btn btn-lg btn-danger animated fadeInUp delay" href="#msg-box1-29">SHOW DETAILS <span class="glyphicon glyphicon-chevron-down"></span></a></div>
                     </div>
                 </div>
             </div>
@@ -107,11 +107,11 @@
             <!--<div class="mbr-box mbr-box&#45;&#45;fixed mbr-box&#45;&#45;adapted">-->
                 <!--<div class="mbr-box__magnet mbr-box__magnet&#45;&#45;top-left mbr-section__left">-->
                     <div class="row">
-                        <div class="mbr-header mbr-header--auto-align mbr-header--wysiwyg col-md-8">
+                        <div class="mbr-header mbr-header--auto-align mbr-header--wysiwyg col-md-12" style="width:100%;margin:0 auto;text-align:center;">
                             <h3 class="mbr-header__text" style="color: black;">CLUB MATCH INFO.</h3>
                         </div>
-                        <div class="btn-group col-md-offset-10 col-md-4">
-                            <button type="button" class=" mbr-buttons__btn btn btn-primary  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div style="clear:both;float:right;margin-top:20px;" class="btn-group">
+                            <button type="button" style="float:right;" class=" mbr-buttons__btn btn btn-primary  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 SEASON <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
@@ -170,7 +170,7 @@
 						    </c:if>
 						    <%--For displaying Next link --%>
 						    <c:if test="true">
-						        <td><a href="MatchResultServlet?page=${currentPage + 1}&clubName=${currentTeam}">Next</a></td>
+						        <td><a style="margin-top:10px;" class="btn btn-default" href="MatchResultServlet?page=${currentPage + 1}&clubName=${currentTeam}">Next <span class="glyphicon glyphicon-chevron-right"></span></a></td>
 						    </c:if>
 						    
                     </div>
