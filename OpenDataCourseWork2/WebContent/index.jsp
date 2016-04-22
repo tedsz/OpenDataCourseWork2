@@ -97,7 +97,7 @@
 <section class="mbr-section mbr-section--relative mbr-section--fixed-size mbr-parallax-background" id="form1-10" style="background-image: url(assets/images/bg3.jpg);">
 <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(76, 105, 114);"></div>
 <div class="mbr-section__container mbr-section__container--std-padding container" style="padding-top: 93px; padding-bottom: 93px;">
-    <div class="row" style="padding:40px 0;background-color:rgba(0, 35, 72, 0.66);border-radius:30px;box-shadow: 5px 5px 25px black;max-width:1000px;margin:0 auto;">
+    <div class="row" style="padding:40px 0;background-color:rgba(0, 35, 72, 0.66);border-radius:30px;box-shadow: 5px 5px 25px black;max-width:1000px;min-width:405px;margin:0 auto;">
         <div class="col-md-6" >
             <div id="allteams" style="width:100%;margin:0 auto;text-align:center;">
 	            <h2 style="color:white;padding-left:20px;">HOME TEAM</h2>
@@ -121,7 +121,7 @@
             <br/>
         </div>
         <div id="vsreset" style="clear:both;" class="col-md-12 mbr-buttons--center">
-            <a class="mbr-buttons__btn btn btn-lg btn-danger animated fadeInUp delay"  onclick="Reset() ">RESET</a>
+            <a class="mbr-buttons__btn btn btn-lg btn-danger animated fadeInUp delay" style="margin-top:20px;" onclick="Reset() ">RESET</a>
         </div>
     </div>
 </div>
