@@ -16,8 +16,8 @@ d3.csv("DATA/footballdata.csv", function(data) {
   });
   var oddsGroup = odds.group();
   pie_totalF
-    .width(380)
-    .height(380)
+    /*.width(380)
+    .height(380)*/
     .radius(120)
     .dimension(odds)
     .group(oddsGroup)
@@ -34,8 +34,8 @@ d3.csv("DATA/footballdata.csv", function(data) {
   });
   var oddshGroup = oddsh.group();
   pie_totalH
-    .width(380)
-    .height(380)
+    /*.width(380)
+    .height(380)*/
     .radius(120)
     .dimension(oddsh)
     .group(oddshGroup)
@@ -55,7 +55,7 @@ d3.csv("DATA/footballdata.csv", function(data) {
   });
  var allteamsGroup = allteams.group(); 
   row_allteams
-    .width(240)
+    .width(400)
     .height(750)
     .dimension(allteams)
     .group(allteamsGroup)

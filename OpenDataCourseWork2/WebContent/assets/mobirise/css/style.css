@@ -1,3 +1,7 @@
+#bt:hover{
+	cursor:pointer;
+}
+
 .ratecontent{
     font-size: 1.5em;
     clear:both;
@@ -9,14 +13,14 @@
     font-size: 3em;
 }
 
-#chooseteam ul{
+/* #chooseteam ul{
     max-height: 280px;
     overflow: scroll;
 }
 
 #chooseteam li a{
     text-decoration: none;
-}
+} */
 
 @media (min-width: 991px){
   #home{

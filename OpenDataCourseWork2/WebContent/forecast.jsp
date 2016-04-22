@@ -15,9 +15,11 @@
   
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:700,400&amp;subset=cyrillic,latin,greek,vietnamese">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-select.css">
   <link rel="stylesheet" href="assets/mobirise/css/style.css">
   <link rel="stylesheet" href="assets/animate.css/animate.min.css">
   <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+  
 
   
   
@@ -54,7 +56,7 @@
 <!--prediction-->
 <section class="engine"></section><section class="mbr-parallax-background mbr-section mbr-section--relative mbr-section--fixed-size mbr-background mbr-after-navbar" id="content5-16" style="background-image: url(assets/images/ep-3247x1622-65.jpg);">
     <div class="mbr-overlay" style="opacity: 0.7; background-color:rgba(0, 28, 57, 0.76)"></div>
-    <div class="mbr-section__container container mbr-section__container--first" style="padding-top: 40px;padding-bottom: 40px">
+    <div class="mbr-section__container container mbr-section__container--first" style="padding-top: 40px;padding-bottom: 150px">
         <div class="mbr-header mbr-header--wysiwyg row  animated fadeInUp">
             <div class="col-sm-8 col-sm-offset-2">
                 <h3 class="mbr-header__text">RESULT PREDICTION</h3>
@@ -62,7 +64,7 @@
                     <!-- home-->
                     <div class="col-md-6 mbr-buttons--center"  id="home"  style="padding-top: 20px;">
                      <form action="" method="post" name="teamPKForm" id = "teamPKForm">
-                        <select id="hs" name="HomeTeam">
+                        <select class="selectpicker btn-inverse col-md-6 " data-live-search="true" id="hs" name="HomeTeam">
                             <option value="" id="--">--</option>
                             <option value="Arsenal" id="Arsenal">Arsenal</option>
                             <option value="Aston Villa" id="Aston Villa" >Aston Villa</option>
@@ -108,7 +110,7 @@
 
                     <!-- away-->
                     <div class="col-md-6 mbr-buttons--center"  id="away" style="padding-top: 20px;" >
-                        <select id="as" name="AwayTeam">
+                        <select class="selectpicker btn-inverse col-md-6 " data-live-search="true" id="as" name="AwayTeam">
                             <option value="" id="--">--</option>
                             <option value="Arsenal" id="Arsenal">Arsenal</option>
                             <option value="Aston Villa" id="Aston Villa" >Aston Villa</option>
@@ -231,6 +233,7 @@
 
   <script src="assets/web/assets/jquery/jquery.min.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/bootstrap/js/bootstrap-select.js"></script>
 <!--<script src="assets/jarallax/jarallax.js"></script>-->
   <script src="assets/smooth-scroll/SmoothScroll.js"></script>
   <script src="assets/mobirise/js/script.js"></script>
