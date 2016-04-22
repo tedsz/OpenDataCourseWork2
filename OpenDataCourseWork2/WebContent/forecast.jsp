@@ -59,12 +59,12 @@
     <div class="mbr-section__container container mbr-section__container--first" style="padding-top: 40px;padding-bottom: 150px">
         <div class="mbr-header mbr-header--wysiwyg row  animated fadeInUp">
             <div class="col-sm-8 col-sm-offset-2">
-                <h3 class="mbr-header__text">RESULT PREDICTION</h3>
-                <div id="chooseteam" class="row" style="margin-top: 20px;margin-bottom: 25px;padding: 20px 0; border:1px white solid;border-radius: 20px; background-color: rgba(0, 0, 0, 0.70) ">
+                <h3 class="mbr-header__text" style="min-width:330px;">RESULT PREDICTION</h3>
+                <div id="chooseteam" class="row" style="min-width:335px;margin-top: 20px;margin-bottom: 25px;padding: 20px 0; border:1px white solid;border-radius: 20px; background-color: rgba(0, 0, 0, 0.70); ">
                     <!-- home-->
                     <div class="col-md-6 mbr-buttons--center"  id="home"  style="padding-top: 20px;">
                      <form action="" method="post" name="teamPKForm" id = "teamPKForm">
-                        <select class="selectpicker btn-inverse col-md-6 " data-live-search="true" id="hs" name="HomeTeam">
+                        <select id="hs" name="HomeTeam">
                             <option value="" id="--">--</option>
                             <option value="Arsenal" id="Arsenal">Arsenal</option>
                             <option value="Aston Villa" id="Aston Villa" >Aston Villa</option>
@@ -110,7 +110,7 @@
 
                     <!-- away-->
                     <div class="col-md-6 mbr-buttons--center"  id="away" style="padding-top: 20px;" >
-                        <select class="selectpicker btn-inverse col-md-6 " data-live-search="true" id="as" name="AwayTeam">
+                        <select id="as" name="AwayTeam">
                             <option value="" id="--">--</option>
                             <option value="Arsenal" id="Arsenal">Arsenal</option>
                             <option value="Aston Villa" id="Aston Villa" >Aston Villa</option>
@@ -186,7 +186,7 @@
 
         <div class="col-md-12" style="border-top: solid 1px black;margin: 40px 0;padding: 20px 0;">
             <div class="ratecontent">AGAINST DATA</div>
-            <div id="pr_visualization" ></div>
+            <div id="pr_visualization" style="background-color: rgba(20, 20, 20, 0.51);height: 120px;width: 50%;margin:0 auto;"></div>
         </div>
         <div class="col-md-12" style="border-top: solid 1px black;padding: 20px 0;">
             <div class="ratecontent">MATCH RAW DATA</div>
