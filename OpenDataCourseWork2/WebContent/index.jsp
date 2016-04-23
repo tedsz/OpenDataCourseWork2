@@ -556,7 +556,7 @@
                 </div>
                 <div class="mbr-section__container mbr-section__container--last" style="padding-bottom: 62px;">
                     <div class="mbr-header mbr-header--reduce mbr-header--center mbr-header--wysiwyg">
-                        <h3 class="mbr-header__text"><a href="index.html" class=West Ham"text-warning">West Ham</a></h3>
+                        <h3 class="mbr-header__text"><a href="index.html" class="text-warning">West Ham</a></h3>
                     </div>
                 </div>
 
@@ -582,7 +582,7 @@
                 </div>
                 <div class="mbr-section__container mbr-section__container--last" style="padding-bottom: 62px;">
                     <div class="mbr-header mbr-header--reduce mbr-header--center mbr-header--wysiwyg">
-                        <h3 class="mbr-header__text"><a href="index.html" class=Wolves"text-warning">Wolves</a></h3>
+                        <h3 class="mbr-header__text"><a href="index.html" class="text-warning">Wolves</a></h3>
                     </div>
                 </div>
 
