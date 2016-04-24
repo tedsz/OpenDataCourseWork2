@@ -1,3 +1,12 @@
+#pr_visualization{margin: 0 auto; width: 800px;}
+      .axis path,
+      .axis line {
+        fill: none;
+        stroke: #121401;
+        stroke-width: 2px;
+        shape-rendering: crispEdges;
+      }
+
 #bt:hover{
 	cursor:pointer;
 }

@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" href="assets/images/logo-1050x1050-40.png" type="image/x-icon">
   <meta name="description" content="">
-  
+<!--   <link href="assets/bootstrap.css" rel="stylesheet"> -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:700,400&amp;subset=cyrillic,latin,greek,vietnamese">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-select.css">
@@ -158,7 +158,7 @@
 
                     <!-- button pk-->
                     <div class="mbr-buttons--center col-md-12" style="margin-top: 20px;">
-                        <a id="btlink" ><img  id="bt" src="assets/images/football.png" class=" animated fadeInUp delay" style="width: 255px;margin:20px auto;;"   /></a>
+                        <a id="btlink" onclick="click()"><img  id="bt" src="assets/images/football.png" class=" animated fadeInUp delay" style="width: 255px;margin:20px auto;"    /></a>
                     </div>
                     </form>
                 </div>
@@ -172,7 +172,11 @@
     <div id="pkdetail" class="delay animated fadeInUp row" style="width: 70%;margin: 0 auto; " >
         <h1 style="text-align: center;margin: 50px 0;" >DATA ANALYSIS</h1>
         <div id="homewin" class="col-md-4 ">
-            <div class="ratecontent">HOME WIN RATE</div>
+        <%
+        	String homeTeamName = (String)request.getSession().getAttribute("homeTeamName");
+            String awayTeamName = (String)request.getSession().getAttribute("awayTeamName");
+        %>
+            <div class="ratecontent">H: <b><%=homeTeamName %></b> WIN RATE</div>
             <div id="homewinrate" class="ratecontent ratedata" style=""><%=winningChanceOfHomeTeam %></div>
         </div>
         <div id="draw" class="col-md-4 ">
@@ -180,13 +184,14 @@
             <div id="drawrate" class="ratecontent ratedata"><%=winningChanceOfAwayTeam %></div>
         </div>
         <div id="awaywin" class="col-md-4 ">
-            <div class="ratecontent">AWAY WIN RATE</div>
+            <div class="ratecontent">A: <b><%=awayTeamName %></b> WIN RATE</div>
             <div id="awaywinrate" class="ratecontent ratedata" style=""><%=drawChance %></div>
         </div>
 
         <div class="col-md-12" style="border-top: solid 1px black;margin: 40px 0;padding: 20px 0;">
-            <div class="ratecontent">AGAINST DATA</div>
-            <div id="pr_visualization" style="background-color: rgba(20, 20, 20, 0.51);height: 120px;width: 50%;margin:0 auto;"></div>
+            <div class="ratecontent">FULL TIME GOALS DATA</div>
+            <div id="pr_visualization" style="text-align:center;width: 100%;margin:0 auto;"></div>
+            
         </div>
         <div class="col-md-12" style="border-top: solid 1px black;padding: 20px 0;">
             <div class="ratecontent">MATCH RAW DATA</div>
@@ -234,9 +239,150 @@
   <script src="assets/web/assets/jquery/jquery.min.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
   <script src="assets/bootstrap/js/bootstrap-select.js"></script>
-<!--<script src="assets/jarallax/jarallax.js"></script>-->
+
   <script src="assets/smooth-scroll/SmoothScroll.js"></script>
   <script src="assets/mobirise/js/script.js"></script>
+  
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+    <!-- <script src="assets/jquery.js"></script>
+    <script src="assets/bootstrap.js"></script> -->
+    <script>
+    var jump1 = '<%=request.getParameter("jump")%>';
+    if (jump1 == 'yes'){
+    	var margin = {top: 20, right: 55, bottom: 30, left: 40},
+        width  = 600 - margin.left - margin.right,
+        height = 350  - margin.top  - margin.bottom;
+
+    var x = d3.scale.ordinal()
+        .rangeRoundBands([0, width], .5);
+
+    var y = d3.scale.linear()
+        .rangeRound([height, 0]);
+
+    var xAxis = d3.svg.axis()
+        .scale(x)
+        .orient("bottom");
+
+    var yAxis = d3.svg.axis()
+        .scale(y)
+        .orient("left");
+
+    
+
+    var svg = d3.select("#pr_visualization").append("svg")
+        .attr("width",  width  + margin.left + margin.right)
+        .attr("height", height + margin.top  + margin.bottom)
+      .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    //数据字典映射
+    var dataMaps = {
+      "FTHG":"FullTimeHomeTeamGoals",
+      "FTAG":"FullTimeAwayTeamGoals"
+    }
+
+    d3.csv("goalData.csv", function (error, data) {
+
+      var labelVar = 'Date';
+      var varNames = ['FTHG','FTAG'];
+      var color = d3.scale.ordinal()
+      .range(["rgba(111, 21, 48, 0.73)","rgba(236, 149, 174, 0.86) "])
+      .domain(varNames);
+
+
+      data.forEach(function (d) {
+        var y0 = 0;
+        d.mapping = varNames.map(function (name) { 
+          return {
+            name: name,
+            label: d[labelVar],
+            y0: y0,
+            y1: y0 += +d[name]
+          };
+        });
+        d.total = d.mapping[d.mapping.length - 1].y1;
+      });
+
+      x.domain(data.map(function (d) { return d.Date; }));
+      y.domain([0, d3.max(data, function (d) { return d.total; })]);
+
+      svg.append("g")
+          .attr("class", "x axis")
+          .attr("transform", "translate(0," + height + ")")
+          .call(xAxis);
+
+      svg.append("g")
+          .attr("class", "y axis")
+          .call(yAxis)
+        .append("text")
+          .attr("transform", "rotate(-90)")
+          .attr("y", 6)
+          .attr("dy", ".71em")
+          .style("text-anchor", "end")
+          .text("Goals");
+
+      var selection = svg.selectAll(".series")
+          .data(data)
+        .enter().append("g")
+          .attr("class", "series")
+          .attr("transform", function (d) { return "translate(" + x(d.Date) + ",0)"; });
+
+      selection.selectAll("rect")
+        .data(function (d) { return d.mapping; })
+      .enter().append("rect")
+        .attr("width", x.rangeBand())
+        .attr("y", function (d) { return y(d.y1); })
+        .attr("height", function (d) { return y(d.y0) - y(d.y1); })
+        .style("fill", function (d) { return color(d.name); })
+        //.style("stroke", "grey")
+        .on("mouseover", function (d) { showPopover.call(this, d); })
+        .on("mouseout",  function (d) { removePopovers(); })
+
+      var legend = svg.selectAll(".legend")
+          .data(varNames)
+        .enter().append("g")
+          .attr("class", "legend")
+          .attr("transform", function (d, i) { return "translate(55," + i * 20 + ")"; });
+
+      legend.append("rect")
+          .attr("x", width - 10)
+          .attr("width", 10)
+          .attr("height", 10)
+          .style("fill", color)
+          .style("stroke", "grey");
+
+      legend.append("text")
+          .attr("x", width - 12)
+          .attr("y", 6)
+          .attr("dy", ".35em")
+          .style("text-anchor", "end")
+          .text(function (d) { return dataMaps[d]; });
+
+      function removePopovers () {
+        $('.popover').each(function() {
+          $(this).remove();
+        }); 
+      }
+
+      function showPopover (d) {
+        $(this).popover({
+          title: d.name,
+          placement: 'auto top',
+          container: 'body',
+          trigger: 'manual',
+          html : true,
+          content: function() { 
+            return "Date: " + d.label + 
+                   "<br/>"+dataMaps[d.name]+": " + d3.format(",")(d.value ? d.value: d.y1 - d.y0); }
+        });
+        $(this).popover('show')
+      }
+    });
+    }
+      
+    </script>
+  
+  
 <script type="text/javascript">
 	//Check whether jump to serlet
 	var jump = '<%=request.getParameter("jump")%>';
